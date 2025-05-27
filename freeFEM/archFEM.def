@@ -1,0 +1,38 @@
+Bootstrap: docker
+From: archlinux:base-devel
+
+%files
+
+%post
+    # Update repository
+    pacman -Sy --noconfirm
+
+    # Update and upgrade packages
+    pacman -Syu --noconfirm --needed
+
+    # Install necessary packages
+    pacman -S --noconfirm --needed cmake gcc boost fftw pybind11 python eigen git openmpi gcc-fortran wget freeglut m4 make patch gmm blas lapack hdf5 gsl arpack suitesparse gnuplot autoconf automake bison flex gdb valgrind unzip
+
+    # Clone FreeFem sources
+    git clone https://github.com/FreeFem/FreeFem-sources.git
+    cd FreeFem-sources
+
+    # Prepare and build FreeFem
+    autoreconf -i
+    ./configure --enable-download --enable-optim
+    ./3rdparty/getall -a
+    cd 3rdparty/ff-petsc
+    make petsc-slepc SUDO=sudo
+
+    # come back to the previous directory
+    cd -
+    ./reconfigure
+
+    # compile binaries
+    make -j$(nproc)
+
+    # install compiled libraries and binaries
+    make install
+
+
+%runscript
