@@ -4,7 +4,7 @@ From: archlinux:base-devel
 %files
 
 %post
-    sudo pacman -Syu --noconfirm
-    sudo pacman -S cmake gcc boost fftw pybind11 python eigen git openmpi gcc-fortran wget freeglut m4 make patch gmm blas lapack hdf5 gsl fftw arpack suitesparse gnuplot autoconf automake bison flex gdb valgrind --noconfirm
+    pacman -Syu --noconfirm
+    pacman -S cmake gcc boost fftw pybind11 python eigen git openmpi gcc-fortran wget freeglut m4 make patch gmm blas lapack hdf5 gsl fftw arpack suitesparse autoconf automake bison flex gdb valgrind --noconfirm
 
 %runscript
