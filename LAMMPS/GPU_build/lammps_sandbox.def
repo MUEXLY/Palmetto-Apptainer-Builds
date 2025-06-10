@@ -1,0 +1,21 @@
+Bootstrap: docker
+From: archlinux:base-devel
+
+%files
+
+%post
+    sudo pacman -Syu --noconfirm
+    sudo pacman -S cmake gcc boost fftw python eigen openmpi openmp wget freeglut m4 make patch gmm blas lapack hdf5 gsl fftw arpack suitesparse autoconf automake bison flex cuda cuda-tools --noconfirm
+
+    # add cuda path
+    echo 'export PATH="/opt/cuda/bin:$PATH"' >> /environment
+
+    # downgrad gcc version to 14, cuda does not support the latest gcc 15
+    mv /usr/bin/gcc /usr/bin/gcc.bak
+    mv /usr/bin/g++ /usr/bin/g++.bak
+    ln -s /usr/bin/gcc-14 /usr/bin/gcc-14
+    ln -s /usr/bin/g++-14 /usr/bin/g++-14
+    echo 'export CC=/usr/bin/gcc-14' >> /environment
+    echo 'export CXX=/usr/bin/g++-14' >> /environment
+
+%runscript
