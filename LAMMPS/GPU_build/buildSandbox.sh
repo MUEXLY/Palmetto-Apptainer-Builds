@@ -4,6 +4,7 @@
 #SBATCH --nodes 1
 #SBATCH --cpus-per-task 16
 #SBATCH --mem 16gb
+#SBATCH --gpus v100:1
 #SBATCH --time 05:00:00
 
 SANDBOXNAME="lammps_sandbox"

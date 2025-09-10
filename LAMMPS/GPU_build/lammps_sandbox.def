@@ -4,8 +4,8 @@ From: archlinux:base-devel
 %files
 
 %post
-    sudo pacman -Syu --noconfirm
-    sudo pacman -S cmake gcc boost fftw python eigen openmpi openmp wget freeglut m4 make patch gmm blas lapack hdf5 gsl fftw arpack suitesparse autoconf automake bison flex cuda cuda-tools --noconfirm
+    pacman -Syu --noconfirm
+    pacman -S cmake gcc boost fftw python eigen openmpi openmp wget freeglut m4 make patch gmm blas lapack hdf5 gsl fftw arpack suitesparse autoconf automake bison flex cuda cuda-tools --noconfirm
 
     # add cuda path
     echo 'export PATH="/opt/cuda/bin:$PATH"' >> /environment
