@@ -13,8 +13,8 @@ From: archlinux:base-devel
     # downgrad gcc version to 14, cuda does not support the latest gcc 15
     mv /usr/bin/gcc /usr/bin/gcc.bak
     mv /usr/bin/g++ /usr/bin/g++.bak
-    ln -s /usr/bin/gcc-14 /usr/bin/gcc-14
-    ln -s /usr/bin/g++-14 /usr/bin/g++-14
+    ln -s /usr/bin/gcc-14 /usr/bin/gcc
+    ln -s /usr/bin/g++-14 /usr/bin/g++
     echo 'export CC=/usr/bin/gcc-14' >> /environment
     echo 'export CXX=/usr/bin/g++-14' >> /environment
 
